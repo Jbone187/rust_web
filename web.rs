@@ -4,16 +4,16 @@ use std::net::{TcpListener, TcpStream};
 
 
 fn main() {
-    let listener = TcpListener::bind("localhost:7878").unwrap();
+    let listener = TcpListener::bind("0.0.0.0:6060").unwrap();
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        handle_connection(stream);
+        handle_client(stream);
         println!("Connected")
     }
 }
 
-fn handle_connection(mut stream: TcpStream) {
+fn handle_client(mut stream: TcpStream) {
     let mut buffer = [0; 512];
     stream.read(&mut buffer).unwrap();
 
